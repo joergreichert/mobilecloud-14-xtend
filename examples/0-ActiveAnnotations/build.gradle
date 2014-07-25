@@ -1,0 +1,27 @@
+buildscript {
+	repositories { mavenCentral() }
+	dependencies {  classpath 'org.xtend:xtend-gradle-plugin:0.1.+' }
+}
+
+apply plugin: 'java'
+apply plugin: 'xtend'
+apply plugin: 'eclipse'
+
+xtend {
+	fork = true
+	useDaemon = true
+	xtendAsPrimaryDebugSource = true
+	hideSyntheticVariables = false
+	encoding = "UTF-8"
+}
+
+sourceSets {
+	main.xtendOutputDir = 'src/main/xtend-gen'
+	test.xtendOutputDir = 'src/test/xtend-gen'
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.6.+'
+}
