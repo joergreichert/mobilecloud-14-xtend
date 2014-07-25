@@ -1,4 +1,4 @@
 mobilecloud-14-xtend
 ====================
 
-Ports of the examples from https://github.com/juleswhite/mobilecloud-14 into Xtend
+Ports of the examples from https://github.com/juleswhite/mobilecloud-14 into [Xtend](http://www.xtend-lang.org)
