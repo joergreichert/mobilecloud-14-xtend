@@ -1,0 +1,4 @@
+buildscript {
+	repositories { mavenCentral() }
+	dependencies {  classpath 'org.xtend:xtend-gradle-plugin:0.1.+' }
+}

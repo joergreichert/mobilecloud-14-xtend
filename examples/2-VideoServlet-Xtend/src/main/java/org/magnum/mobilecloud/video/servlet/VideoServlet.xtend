@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import static com.google.common.net.MediaType.*
+import javax.servlet.annotation.WebServlet
 
 /**
  * This simple VideoServlet allows clients to send HTTP POST
@@ -20,6 +21,12 @@ import static com.google.common.net.MediaType.*
  * @author jules
  *
  */
+@WebServlet(
+    displayName="Echo Application",
+    description="This is an application that will echo any message received via the msg parameter back to the client.",
+    name="VideoServlet",
+	urlPatterns = #["/video"]
+)
 public class VideoServlet extends HttpServlet // Servlets should inherit HttpServlet
 {
 
@@ -35,7 +42,7 @@ public class VideoServlet extends HttpServlet // Servlets should inherit HttpSer
 	 * list of the videos that is sent back to the client.
 	 * 
 	 */
-	override doGet(HttpServletRequest req, HttpServletResponse it)
+	override doGet(HttpServletRequest req, extension HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		// Make sure and set the content-type header so that the client
@@ -43,18 +50,13 @@ public class VideoServlet extends HttpServlet // Servlets should inherit HttpSer
 		// back
 		contentType = PLAIN_TEXT_UTF_8.toString
 
-		// This PrintWriter allows us to write data to the HTTP 
-		// response body that is going to be sent to the client.
-		val sendToClient = writer
-		
 		// Loop through all of the stored videos and print them out
 		// for the client to see.
-		for (v : this.videos) {
-			
-			// For each video, write its name and URL into the HTTP
-			// response body
-			sendToClient.write('''«v.name» : «v.url»\n''')
-		}
+		// For each video, write its name and URL into the HTTP
+		// response body
+		// This PrintWriter allows us to write data to the HTTP 
+		// response body that is going to be sent to the client.
+		videos.forEach[writer.write('''«name» : «url»''')]
 	}
 
 	/**
@@ -95,22 +97,20 @@ public class VideoServlet extends HttpServlet // Servlets should inherit HttpSer
 		// client was expected to provide and make sure that it isn't null,
 		// empty, etc.
 		if (name == null || url == null || durationStr == null
-				|| name.trim().length() < 1 || url.trim().length() < 10
-				|| durationStr.trim().length() < 1
+				|| name.trim.length < 1 || url.trim.length < 10
+				|| durationStr.trim.length < 1
 				|| duration <= 0) {
 			
 			// If the parameters pass our basic validation, we need to 
 			// send an HTTP 400 Bad Request to the client and give it
 			// a hint as to what it got wrong.
-			sendError(400, '''Missing ['«Video.PARAM_name»','«Video.PARAM_duration»','«Video.PARAM_url»'].''')
+			sendError(400, '''Missing ['«Video.FIELD_NAMES.join(", ")»'].''')
 		} 
 		else {
 			// It looks like the client provided all of the data that
 			// we need, use that data to construct a new Video object
-			val v = new Video(name, url, duration)
-			
 			// Add the video to our in-memory list of videos
-			videos.add(v)
+			videos += new Video(name, url, duration)
 			
 			// Let the client know that we successfully added the video
 			// by writing a message into the HTTP response body

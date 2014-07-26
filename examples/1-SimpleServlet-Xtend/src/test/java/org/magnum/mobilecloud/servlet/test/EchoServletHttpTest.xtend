@@ -28,7 +28,7 @@ public class EchoServletHttpTest {
 		val closer = Closer.create
 		try {
 			val in = closer.register(new FileInputStream(new File("gradle.properties")))
-			(new Properties => [load(in)]).get("httpPort") as String
+			(new Properties => [load(in)]).get("localHttpPort") as String
 		} catch (Throwable e) {
 		  throw closer.rethrow(e)
 		} finally {

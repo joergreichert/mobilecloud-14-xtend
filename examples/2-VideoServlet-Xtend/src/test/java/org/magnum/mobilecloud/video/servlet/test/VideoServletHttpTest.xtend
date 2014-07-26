@@ -1,4 +1,4 @@
-package org.magnum.mobilecloud.servlet.test
+package org.magnum.mobilecloud.video.servlet.test
 
 import com.google.common.io.Closer
 import java.io.File
@@ -19,7 +19,7 @@ import org.magnum.mobilecloud.video.servlet.VideoServlet
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
-import static org.magnum.mobilecloud.video.servlet.Constants.*
+import static org.magnum.mobilecloud.video.servlet.test.Constants.*
 import org.magnum.mobilecloud.video.servlet.Video
 
 /**
@@ -45,12 +45,12 @@ import org.magnum.mobilecloud.video.servlet.Video
  * @author jules
  *
  */
-public class VideoServlet2HttpTest {
+public class VideoServletHttpTest {
 	private String httpPort = [ |
 		val closer = Closer.create
 		try {
 			val in = closer.register(new FileInputStream(new File("gradle.properties")))
-			(new Properties => [load(in)]).get("httpPort") as String
+			(new Properties => [load(in)]).get("localHttpPort") as String
 		} catch (Throwable e) {
 			throw closer.rethrow(e)
 		} finally {
@@ -120,7 +120,7 @@ public class VideoServlet2HttpTest {
 
 		// Construct a representation of the text that we are expecting
 		// to see in the response representing our video
-		val expectedVideoEntry = '''«title» : «videoUrl»\n'''
+		val expectedVideoEntry = '''«title» : «videoUrl»'''
 
 		// Check that our video shows up in the list by searching for the
 		// expectedVideoEntry in the text of the response body

@@ -1,6 +1,9 @@
 bin
 target
 .gradle
+.settings
+.classpath
+.project
 build
 .trace
 .DS_Store

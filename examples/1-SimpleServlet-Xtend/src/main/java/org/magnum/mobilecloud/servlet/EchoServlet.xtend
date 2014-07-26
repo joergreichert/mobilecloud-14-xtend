@@ -1,13 +1,14 @@
 package org.magnum.mobilecloud.servlet
 
 import java.io.IOException
-
 import javax.servlet.ServletException
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import static org.magnum.mobilecloud.servlet.Constants.*
+
 import static com.google.common.net.MediaType.*
+import static org.magnum.mobilecloud.servlet.Constants.*
+import javax.servlet.annotation.WebServlet
 
 /**
  * An example of a very simple servlet that looks for a single request
@@ -17,6 +18,12 @@ import static com.google.common.net.MediaType.*
  * @author jules
  *
  */
+@WebServlet(
+    displayName="Echo Application",
+    description="This is an application that will echo any message received via the msg parameter back to the client.",
+    name="EchoServlet",
+	urlPatterns = #["/echo"]
+)
 class EchoServlet extends HttpServlet // Servlets should inherit from HttpServlet
 {
 

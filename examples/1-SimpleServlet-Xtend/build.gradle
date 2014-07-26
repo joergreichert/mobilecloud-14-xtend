@@ -1,30 +1,21 @@
 buildscript {
-	repositories { mavenCentral() }
-	dependencies {  classpath 'org.xtend:xtend-gradle-plugin:0.1.+' }
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+	}
 }
 
-apply plugin: 'java'
 apply plugin: 'xtend'
-apply plugin: 'eclipse'
 apply plugin: 'war'
-apply plugin: 'jetty'
+apply plugin: 'jettyEclipse'
 
-
-httpPort = Integer.valueOf(localHttpPort)
-stopPort = Integer.valueOf(localStopPort)
-stopKey = 'stopKey'
-
-xtend {
-	fork = true
-	useDaemon = true
-	xtendAsPrimaryDebugSource = true
-	hideSyntheticVariables = false
-	encoding = "UTF-8"
-}
-
-sourceSets {
-	main.xtendOutputDir = 'src/main/xtend-gen'
-	test.xtendOutputDir = 'src/test/xtend-gen'
+jettyEclipse {
+	contextPath = '/' + projectName + '/'
+	httpPort = Integer.valueOf(localHttpPort)
+	stopPort = Integer.valueOf(localStopPort)
+	stopKey = 'stopKey'
 }
 
 repositories { mavenCentral() }
@@ -32,8 +23,9 @@ repositories { mavenCentral() }
 dependencies {
 	compile project(':0-ActiveAnnotations')
 	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.6.+'
-	providedCompile 'javax.servlet:servlet-api:2.5'
+	compile 'org.eclipse.jetty:jetty-plus:9.+'
+	compile 'org.eclipse.jetty:jetty-annotations:9.+'
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
 	providedCompile 'org.apache.commons:commons-io:1.3.2'
 	testCompile group: 'junit', name: 'junit', version: '4.+'
 }
-

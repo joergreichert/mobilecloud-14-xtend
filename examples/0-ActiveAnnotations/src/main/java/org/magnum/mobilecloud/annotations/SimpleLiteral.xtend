@@ -16,7 +16,8 @@ annotation SimpleLiteral {
 class SimpleLiteralProcessor extends AbstractClassProcessor {
 
 	override doTransform(MutableClassDeclaration annotatedClass, extension TransformationContext context) {
-		annotatedClass.declaredFields.map[simpleName.substring(1)].forEach(oldFieldName|
+		val fieldNames = annotatedClass.getFieldNames 
+		fieldNames.forEach(oldFieldName|
 			annotatedClass.addField('''PARAM_«oldFieldName»''') [
 				docComment = '''Name of field «oldFieldName»'''
 				type = string
@@ -26,5 +27,16 @@ class SimpleLiteralProcessor extends AbstractClassProcessor {
 				initializer = '''"«oldFieldName»"'''
 			]
 		)
+		annotatedClass.addField("FIELD_NAMES") [
+			type = newArrayTypeReference(string)
+			final = true
+			static = true
+			visibility = Visibility.PUBLIC
+			initializer = '''new String [] { «FOR fieldName : fieldNames SEPARATOR ","»"«fieldName»"«ENDFOR»};'''
+		]
+	}
+	
+	def private getFieldNames(MutableClassDeclaration annotatedClass) {
+		annotatedClass.declaredFields.map[simpleName.substring(1)]
 	}
 }
