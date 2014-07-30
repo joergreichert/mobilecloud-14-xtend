@@ -24,7 +24,7 @@ import static org.magnum.mobilecloud.servlet.Constants.*
  *
  */
 public class EchoServletHttpTest {
-	private String httpPort = [|
+	private String httpPort = {
 		val closer = Closer.create
 		try {
 			val in = closer.register(new FileInputStream(new File("gradle.properties")))
@@ -34,7 +34,7 @@ public class EchoServletHttpTest {
 		} finally {
 		  closer.close
 		}		
-	].apply
+	}
 	
 	// By default, the test server will be running on localhost and listening to
 	// port configured in Constants. If the server is running and you can't connect to it with this test,

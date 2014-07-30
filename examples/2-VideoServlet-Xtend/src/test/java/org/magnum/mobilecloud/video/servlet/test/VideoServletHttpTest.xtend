@@ -46,7 +46,7 @@ import org.magnum.mobilecloud.video.servlet.Video
  *
  */
 public class VideoServletHttpTest {
-	private String httpPort = [ |
+	private String httpPort = {
 		val closer = Closer.create
 		try {
 			val in = closer.register(new FileInputStream(new File("gradle.properties")))
@@ -56,7 +56,7 @@ public class VideoServletHttpTest {
 		} finally {
 			closer.close
 		}
-	].apply
+	}
 
 	private val TEST_URL = '''http://localhost:«httpPort»/«PROJECT_NAME»/video'''
 
