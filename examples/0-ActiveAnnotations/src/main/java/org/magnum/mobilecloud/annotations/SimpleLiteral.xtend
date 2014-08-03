@@ -37,6 +37,6 @@ class SimpleLiteralProcessor extends AbstractClassProcessor {
 	}
 	
 	def private getFieldNames(MutableClassDeclaration annotatedClass) {
-		annotatedClass.declaredFields.map[simpleName.substring(1)]
+		annotatedClass.declaredFields.map[if(simpleName.startsWith("_")) simpleName.substring(1) else simpleName]
 	}
 }

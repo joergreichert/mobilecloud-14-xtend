@@ -1,5 +1,7 @@
 package org.magnum.mobilecloud.integration.test
 
+import com.google.common.io.Closer
+import java.util.Properties
 import org.junit.Test
 import org.magnum.mobilecloud.video.TestData
 import org.magnum.mobilecloud.video.client.VideoSvcApi
@@ -30,8 +32,19 @@ import static org.junit.Assert.assertTrue
  *
  */
 public class VideoSvcClientApiTest {
+	private String httpPort = {
+		val closer = Closer.create
+		try {
+			val in = closer.register(VideoSvcClientApiTest.classLoader.getResourceAsStream("application.properties"))
+			(new Properties => [load(in)]).get("server.port") as String
+		} catch (Throwable e) {
+			throw closer.rethrow(e)
+		} finally {
+			closer.close
+		}
+	}
 
-	private final String TEST_URL = "http://localhost:8080"
+	private final String TEST_URL = '''http://localhost:«httpPort»'''
 
 	private val videoService = new RestAdapter.Builder()
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build

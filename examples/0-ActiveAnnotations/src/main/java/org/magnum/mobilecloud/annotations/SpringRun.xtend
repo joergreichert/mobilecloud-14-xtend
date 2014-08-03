@@ -7,21 +7,22 @@ import org.eclipse.xtend.lib.macro.Active
 import org.eclipse.xtend.lib.macro.TransformationContext
 import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Visibility
+import org.springframework.boot.SpringApplication
 
 @Target(ElementType.TYPE)
-@Active(SerializableProcessor)
-annotation Serializable {
+@Active(SpringRunProcessor)
+annotation SpringRun {
 }
 
-class SerializableProcessor extends AbstractClassProcessor {
+class SpringRunProcessor extends AbstractClassProcessor {
 
 	override doTransform(MutableClassDeclaration annotatedClass, extension TransformationContext context) {
-		annotatedClass.addField("serialVersionUID") [
-			type = primitiveLong
-			final = true
+		annotatedClass.addMethod("main") [
+			docComment = "Tell Spring to launch our app!"
 			static = true
-			visibility = Visibility.PRIVATE
-			initializer = '''1L'''
+			visibility = Visibility.PUBLIC
+			addParameter("args", string.newArrayTypeReference)
+			body = '''«SpringApplication».run(«annotatedClass».class, args);'''
 		]
 	}
 }

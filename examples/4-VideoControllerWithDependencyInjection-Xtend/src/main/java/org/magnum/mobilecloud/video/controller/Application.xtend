@@ -1,8 +1,8 @@
 package org.magnum.mobilecloud.video.controller
 
+import org.magnum.mobilecloud.annotations.SpringRun
 import org.magnum.mobilecloud.video.repository.NoDuplicatesVideoRepository
 import org.magnum.mobilecloud.video.repository.VideoRepository
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -23,13 +23,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 // Tell Spring to automatically inject any dependencies that are marked in
 // our classes with @Autowired
 @EnableAutoConfiguration
+@SpringRun
 public class Application {
 
-	// Tell Spring to launch our app!
-	public static def void main(String[] args){
-		SpringApplication.run(Application, args)
-	}
-	
 	// We need to tell Spring which implementation of the VideoRepository
 	// that it should use. Spring is going to automatically inject whatever
 	// we return into the VideoSvc's videos member variable that is annotated
@@ -38,5 +34,4 @@ public class Application {
 	public def VideoRepository videoRepository(){
 		new NoDuplicatesVideoRepository
 	}
-	
 }

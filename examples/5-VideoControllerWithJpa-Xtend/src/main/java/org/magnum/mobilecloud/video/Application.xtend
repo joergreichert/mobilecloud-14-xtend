@@ -1,7 +1,7 @@
 package org.magnum.mobilecloud.video
 
+import org.magnum.mobilecloud.annotations.SpringRun
 import org.magnum.mobilecloud.video.repository.VideoRepository
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -25,11 +25,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 // Any class in this package that is annotated with @Controller is going to be
 // automatically discovered and connected to the DispatcherServlet.
 @ComponentScan
+@SpringRun
 public class Application {
-	
-	// Tell Spring to launch our app!
-	public static def void main(String[] args) {
-		SpringApplication.run(Application, args)
-	}
 	
 }

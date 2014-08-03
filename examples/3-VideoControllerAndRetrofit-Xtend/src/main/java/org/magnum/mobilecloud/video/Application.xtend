@@ -1,6 +1,6 @@
 package org.magnum.mobilecloud.video
 
-import org.springframework.boot.SpringApplication
+import org.magnum.mobilecloud.annotations.SpringRun
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -20,10 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 // Tell Spring to automatically inject any dependencies that are marked in
 // our classes with @Autowired
 @EnableAutoConfiguration
+@SpringRun
 public class Application {
 
-	// Tell Spring to launch our app!
-	public static def void main(String[] args){
-		SpringApplication.run(Application, args)
-	}
 }

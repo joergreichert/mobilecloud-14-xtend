@@ -1,7 +1,40 @@
+buildscript {
+	ext {
+		springBootVersion = '1.0.2.RELEASE'
+	}
+	repositories {
+		maven { url "http://repo.spring.io/libs-snapshot" }
+		mavenLocal()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+	}
+}
+
 apply plugin: 'xtend'
 
-repositories { mavenCentral() }
+repositories {
+	mavenCentral()
+	maven { url "http://repo.spring.io/libs-snapshot" }
+	maven { url "http://maven.springframework.org/milestone" }
+}
 
 dependencies {
 	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.6.+'
+	compile("com.github.oehme.xtend:xtend-contrib:0.4.7+")
+
+	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
+		exclude module: "spring-boot-starter-tomcat"
+	}
+	compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+	compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+	compile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	
+	compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final")
+	
+	compile("com.google.guava:guava:17.0")
+	compile("com.squareup.retrofit:retrofit:1.6.0")
+	compile("commons-io:commons-io:2.4")
+	
+	testCompile("junit:junit")
 }

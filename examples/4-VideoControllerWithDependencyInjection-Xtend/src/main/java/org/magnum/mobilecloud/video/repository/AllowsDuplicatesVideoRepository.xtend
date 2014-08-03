@@ -24,7 +24,7 @@ public class AllowsDuplicatesVideoRepository implements VideoRepository {
 	private val videoList = new CopyOnWriteArrayList<Video>
 	
 	override addVideo(Video v) {
-		videoList.add(v)
+		videoList += v
 	}
 
 	override getVideos() {

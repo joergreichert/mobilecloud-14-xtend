@@ -36,8 +36,6 @@ repositories {
 dependencies {
 	compile project(':0-ActiveAnnotations')
 	
-	compile("com.github.oehme.xtend:xtend-contrib:0.4.7+")
-	
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
         exclude module: "spring-boot-starter-tomcat"
     }
