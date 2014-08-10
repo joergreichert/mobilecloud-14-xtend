@@ -1,1 +1,1 @@
-include "0-ActiveAnnotations", "1-SimpleServlet-Xtend", "2-VideoServlet-Xtend", "3-VideoControllerAndRetrofit-Xtend", "4-VideoControllerWithDependencyInjection-Xtend", "5-VideoControllerWithJpa-Xtend"
+include "0-ActiveAnnotations", "1-SimpleServlet-Xtend", "2-VideoServlet-Xtend", "3-VideoControllerAndRetrofit-Xtend", "4-VideoControllerWithDependencyInjection-Xtend", "5-VideoControllerWithJpa-Xtend", "6-VideoServiceWithDataRest-Xtend", "7-VideoServiceWithHttps-Xtend", "8-VideoServiceWithSpringSecurity-Xtend"
