@@ -102,7 +102,7 @@ public class Application extends RepositoryRestMvcConfiguration {
 		
 		val absoluteKeystoreFile = new File(keystoreFile).absolutePath
 
-		return new EmbeddedServletContainerCustomizer {
+		new EmbeddedServletContainerCustomizer {
 			
 			override customize(ConfigurableEmbeddedServletContainer container) {
 				container as TomcatEmbeddedServletContainerFactory => [

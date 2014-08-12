@@ -6,7 +6,6 @@ import org.magnum.mobilecloud.video.client.VideoSvcApi
 import org.magnum.mobilecloud.video.repository.Video
 import retrofit.RestAdapter
 import retrofit.RestAdapter.LogLevel
-import retrofit.client.ApacheClient
 
 import static org.junit.Assert.assertTrue
 
@@ -36,8 +35,7 @@ public class VideoSvcClientApiTest {
 	private final String TEST_URL = "http://localhost:8080"
 
 	private VideoSvcApi videoService = new RestAdapter.Builder()
-			// TODO: bug in Xtend
-			.setClient(new ApacheClient(/*UnsafeHttpsClient.createUnsafeClient*/))
+			.setClient(new UnsafeApacheClient)
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build
 			.create(VideoSvcApi)
 
