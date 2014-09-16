@@ -9,6 +9,7 @@ import org.magnum.mobilecloud.video.client.SecuredRestException
 import org.magnum.mobilecloud.video.client.VideoSvcApi
 import retrofit.RestAdapter.LogLevel
 import retrofit.RetrofitError
+import retrofit.client.ApacheClient
 
 import static org.junit.Assert.*
 import static org.junit.Assert.assertEquals
@@ -50,7 +51,7 @@ public class VideoSvcClientApiTest {
 			.setUsername(USERNAME)
 			.setPassword(PASSWORD)
 			.setClientId(CLIENT_ID)
-			.setClient(new UnsafeApacheClient)
+			.setClient(new ApacheClient(UnsafeHttpsClient.createUnsafeClient))
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build()
 			.create(VideoSvcApi)
 
@@ -59,7 +60,7 @@ public class VideoSvcClientApiTest {
 			.setUsername(USERNAME)
 			.setPassword(PASSWORD)
 			.setClientId(READ_ONLY_CLIENT_ID)
-			.setClient(new UnsafeApacheClient)
+			.setClient(new ApacheClient(UnsafeHttpsClient.createUnsafeClient))
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build()
 			.create(VideoSvcApi)
 
@@ -68,7 +69,7 @@ public class VideoSvcClientApiTest {
 			.setUsername(UUID.randomUUID.toString)
 			.setPassword(UUID.randomUUID.toString)
 			.setClientId(UUID.randomUUID.toString)
-			.setClient(new UnsafeApacheClient)
+			.setClient(new ApacheClient(UnsafeHttpsClient.createUnsafeClient))
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build()
 			.create(VideoSvcApi)
 

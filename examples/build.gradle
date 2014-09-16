@@ -8,5 +8,5 @@ apply plugin: 'xtend'
 repositories { mavenCentral() }
 
 dependencies {
-	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.6.+'
+	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.7.+'
 }

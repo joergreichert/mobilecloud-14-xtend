@@ -1,12 +1,12 @@
 package org.magnum.mobilecloud.integration.test
 
+import com.google.common.io.Closer
+import java.util.Properties
 import org.junit.Test
 import org.magnum.mobilecloud.video.TestData
 import org.magnum.mobilecloud.video.client.VideoSvcApi
-import org.magnum.mobilecloud.video.repository.Video
 import retrofit.RestAdapter
 import retrofit.RestAdapter.LogLevel
-import retrofit.client.ApacheClient
 
 import static org.junit.Assert.assertTrue
 
@@ -32,15 +32,25 @@ import static org.junit.Assert.assertTrue
  *
  */
 public class VideoSvcClientApiTest {
+	private String httpPort = {
+		val closer = Closer.create
+		try {
+			val in = closer.register(VideoSvcClientApiTest.classLoader.getResourceAsStream("application.properties"))
+			(new Properties => [load(in)]).get("server.port") as String
+		} catch (Throwable e) {
+			throw closer.rethrow(e)
+		} finally {
+			closer.close
+		}
+	}
 
-	private final String TEST_URL = "http://localhost:8080"
+	private final String TEST_URL = '''http://localhost:«httpPort»'''
 
-	private VideoSvcApi videoService = new RestAdapter.Builder()
-			.setClient(new ApacheClient(UnsafeHttpsClient.createUnsafeClient))
+	private val videoService = new RestAdapter.Builder()
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build
 			.create(VideoSvcApi)
 
-	private Video video = TestData.randomVideo()
+	private val video = TestData.randomVideo
 	
 	/**
 	 * This test creates a Video, adds the Video to the VideoSvc, and then
@@ -54,9 +64,10 @@ public class VideoSvcClientApiTest {
 		
 		// Add the video
 		videoService.addVideo(video)
-		
+
 		// We should get back the video that we added above
-		assertTrue(videoService.videoList.contains(video))
+		val videos = videoService.videoList
+		assertTrue(videos.contains(video))
 	}
 
 }

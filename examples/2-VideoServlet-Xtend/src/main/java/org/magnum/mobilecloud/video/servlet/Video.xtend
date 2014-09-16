@@ -1,5 +1,7 @@
 package org.magnum.mobilecloud.video.servlet;
 
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.magnum.mobilecloud.annotations.DefaultConstructor
 import org.magnum.mobilecloud.annotations.SimpleLiteral
 
 /**
@@ -8,7 +10,8 @@ import org.magnum.mobilecloud.annotations.SimpleLiteral
  * @author jules
  * 
  */
-@Data
+@Accessors
+@DefaultConstructor(generateEmpty=true)
 @SimpleLiteral
 public class Video {
 	private String name;

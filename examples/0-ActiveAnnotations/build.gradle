@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.6.+'
+	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.7.+'
 	compile("com.github.oehme.xtend:xtend-contrib:0.4.7+")
 
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {

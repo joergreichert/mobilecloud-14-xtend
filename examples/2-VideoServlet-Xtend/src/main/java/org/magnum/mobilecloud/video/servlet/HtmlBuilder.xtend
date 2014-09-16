@@ -1,7 +1,9 @@
 package org.magnum.mobilecloud.video.servlet
 
+import org.eclipse.xtend.lib.annotations.Accessors
+
 class Html {
-	@Property private Body body
+	@Accessors private Body body
 
 	def toStartHtml() 
 		'''
@@ -24,7 +26,7 @@ class Html {
 }
 
 class Body {
-	@Property private Form form
+	@Accessors private Form form
 
 	def toStartHtml() 
 		'''
@@ -45,10 +47,10 @@ class Body {
 }
 
 class Form {
-	@Property private String name
-	@Property private FormMethod method
-	@Property private String target
-	@Property private FieldSet fieldset
+	@Accessors private String name
+	@Accessors private FormMethod method
+	@Accessors private String target
+	@Accessors private FieldSet fieldset
 	
 	def toHtml() 
 		'''
@@ -80,8 +82,8 @@ class Form {
 enum FormMethod {  GET, POST }
 
 class FieldSet {
-	@Property private String legend
-	@Property private Table table
+	@Accessors private String legend
+	@Accessors private Table table
 
 	def toHtml() 
 		'''
@@ -98,8 +100,8 @@ class FieldSet {
 }
 
 class Table {
-	@Property private val labelAndValueList = <LabelAndValue>newArrayList
-	@Property private val trs = <TR>newArrayList
+	@Accessors private val labelAndValueList = <LabelAndValue>newArrayList
+	@Accessors private val trs = <TR>newArrayList
 	
 	def toHtml() 
 		'''
@@ -115,9 +117,9 @@ class Table {
 }
 
 class LabelAndValue {
-	@Property private String id
-	@Property private Label label
-	@Property private Input input
+	@Accessors private String id
+	@Accessors private Label label
+	@Accessors private Input input
 	
 	def toHtml() {
 		(new TR => [
@@ -133,7 +135,7 @@ class LabelAndValue {
 }
 
 class TR {
-	@Property private val tds = <TD>newArrayList
+	@Accessors private val tds = <TD>newArrayList
 	
 	def toHtml() 
 		'''
@@ -146,10 +148,10 @@ class TR {
 }
 
 class TD {
-	@Property private Style style
-	@Property private int colspan = -1
-	@Property private Label label
-	@Property private Input input
+	@Accessors private Style style
+	@Accessors private int colspan = -1
+	@Accessors private Label label
+	@Accessors private Input input
 	
 	def toHtml() 
 		'''
@@ -175,7 +177,7 @@ class TD {
 }
 
 class Style {
-	@Property private TextAlign textAlign
+	@Accessors private TextAlign textAlign
 	
 	def toHtml() 
 		'''
@@ -200,8 +202,8 @@ enum TextAlign {
 }
 
 class Label {
-	@Property private Input forInput
-	@Property private String value
+	@Accessors private Input forInput
+	@Accessors private String value
 	
 	def toHtml() '''<label«forInputToHtml»>«value»:&nbsp</label>'''
 
@@ -211,12 +213,12 @@ class Label {
 }
 
 class Input {
-	@Property private String id
-	@Property private String name
-	@Property private InputType type
-	@Property private String value
-	@Property private int maxLength = -1
-	@Property private int size = -1
+	@Accessors private String id
+	@Accessors private String name
+	@Accessors private InputType type
+	@Accessors private String value
+	@Accessors private int maxLength = -1
+	@Accessors private int size = -1
 	
 	def toHtml() 
 		'''

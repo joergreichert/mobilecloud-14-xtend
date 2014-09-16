@@ -55,7 +55,7 @@ public class VideoSvcClientApiTest {
 	private val String TEST_URL = "https://localhost:8443"
 
 	private VideoSvcApi videoService = new RestAdapter.Builder()
-			.setClient(new UnsafeApacheClient)
+			.setClient(new ApacheClient(UnsafeHttpsClient.createUnsafeClient))
 			.setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build
 			.create(VideoSvcApi)
 
