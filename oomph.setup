@@ -1595,6 +1595,10 @@
             url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
         <repository
             url="http://download.itemis.com/updates/releases/2.1.1/"/>
+        <repository
+		    url="https://dl-ssl.google.com/android/eclipse"/>
+        <repository
+            url="http://dist.springsource.com/release/TOOLS/update/e4.4/"/>
       </repositoryList>
     </targlet>
   </setupTask>
