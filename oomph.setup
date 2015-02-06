@@ -159,7 +159,7 @@
       <requirement
           name="org.springframework.ide.eclipse.uaa.feature.feature.group"/>
       <repository
-          url="http://dist.springsource.com/release/TOOLS/gradle/"/>
+          url="http://dist.springsource.com/milestone/TOOLS/gradle"/>
     </setupTask>
     <setupTask
         xsi:type="setup.p2:P2Task"
