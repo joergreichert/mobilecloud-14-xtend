@@ -5,8 +5,13 @@ buildscript {
 
 apply plugin: 'xtend'
 
-repositories { mavenCentral() }
+repositories { 
+    mavenCentral() 
+    maven {
+        url 'http://oss.sonatype.org/content/repositories/snapshots'
+    }
+}
 
 dependencies {
-	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.7.+'
+	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.+'
 }

@@ -31,10 +31,13 @@ repositories {
     mavenCentral()
     maven { url "http://repo.spring.io/libs-snapshot" }
     maven { url "http://maven.springframework.org/milestone" }
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
 	compile project(':0-ActiveAnnotations')
+    
+    compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.+'
 	
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
         exclude module: "spring-boot-starter-tomcat"

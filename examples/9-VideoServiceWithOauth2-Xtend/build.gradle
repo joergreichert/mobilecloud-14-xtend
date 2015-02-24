@@ -29,6 +29,7 @@ repositories {
     mavenCentral()
     maven { url "http://repo.spring.io/libs-snapshot" }
     maven { url "http://maven.springframework.org/milestone" }
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {

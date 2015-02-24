@@ -17,10 +17,11 @@ repositories {
 	mavenCentral()
 	maven { url "http://repo.spring.io/libs-snapshot" }
 	maven { url "http://maven.springframework.org/milestone" }
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
-	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.7.+'
+	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.+'
 	compile("com.github.oehme.xtend:xtend-contrib:0.4.7+")
 
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {

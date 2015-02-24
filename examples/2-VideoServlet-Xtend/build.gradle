@@ -18,11 +18,14 @@ jettyEclipse {
 	stopKey = 'stopKey'
 }
 
-repositories { mavenCentral() }
+repositories { 
+    mavenCentral()
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
+}
 
 dependencies {
 	compile project(':0-ActiveAnnotations')
-	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.7.+'
+	compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.8.+'
 	compile 'org.eclipse.jetty:jetty-plus:9.+'
 	compile 'org.eclipse.jetty:jetty-annotations:9.+'
 	compile 'javax.servlet:javax.servlet-api:3.1.0'
